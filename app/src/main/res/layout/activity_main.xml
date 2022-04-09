@@ -20,7 +20,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            android:src="@drawable/red" />
+            android:onClick="dropIn" />
 
         <ImageView
             android:id="@+id/rc2"
@@ -28,7 +28,7 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/red" />
+            android:onClick="dropIn"/>
 
         <ImageView
             android:id="@+id/rc3"
@@ -36,7 +36,7 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/red" />
+            android:onClick="dropIn"/>
 
         <ImageView
             android:id="@+id/rc4"
@@ -44,7 +44,7 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:layout_marginTop="17dp"
-            android:src="@drawable/red" />
+            android:onClick="dropIn"/>
 
         <ImageView
             android:id="@+id/rc5"
@@ -53,7 +53,7 @@
             android:layout_margin="10dp"
             android:layout_marginTop="17dp"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/red" />
+            android:onClick="dropIn"/>
 
         <ImageView
             android:id="@+id/rc6"
@@ -62,7 +62,7 @@
             android:layout_margin="10dp"
             android:layout_marginTop="17dp"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/red" />
+            android:onClick="dropIn"/>
 
         <ImageView
             android:id="@+id/rc7"
@@ -70,8 +70,7 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:layout_marginTop="17dp"
-
-            android:src="@drawable/red" />
+            android:onClick="dropIn"/>
 
         <ImageView
             android:id="@+id/rc8"
@@ -80,7 +79,7 @@
             android:layout_margin="10dp"
             android:layout_marginTop="17dp"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/red" />
+            android:onClick="dropIn" />
 
         <ImageView
             android:id="@+id/rc9"
@@ -89,7 +88,7 @@
             android:layout_margin="10dp"
             android:layout_marginTop="17dp"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/red" />
+            android:onClick="dropIn"/>
 
     </GridLayout>
 
