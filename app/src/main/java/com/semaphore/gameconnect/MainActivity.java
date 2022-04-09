@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,6 +49,24 @@ public class MainActivity extends AppCompatActivity {
             counter.setImageResource(R.drawable.red); // set an image on the imageview
         }
         counter.animate().translationYBy(1000).rotation(500).setDuration(500); // paano bababa
+
+        Log.i("Arr", "Array: " + Integer.toString(winningPositions[0][0]));
+
+        /* CHECK AGAINST THE WINNING POSITION */
+        for(int[] winningPosition: winningPositions){
+            Log.i("Info", "Arr0: "+Arrays.toString(winningPosition));
+            Log.i("Info", "Arr1: "+Arrays.toString(gameState));
+
+            if((gameState[winningPosition[0]]) == gameState[winningPosition[1]] &&
+                    gameState[winningPosition[1]] == gameState[winningPosition[2]] &&
+            gameState[winningPosition[0]] != 2) {
+
+                // if all the above condition is all met, then someone has won
+                Toast.makeText(this, "Someone has won", Toast.LENGTH_LONG).show();
+
+            }
+        }
+
     }
 
     @Override
