@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
                                 {0,4,8}, // diagonal right winning position
                                 {2,4,6} // diagonal left winning position
                                 };
+    // checks whether the game is still going or already done
+    boolean gameActive = true;
 
     /* onClick functions here */
     public void dropIn(View view){ // need a View parameter which is the ImageView that was tapped on
@@ -34,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
         // check the tag
         int tappedCounterTag = Integer.parseInt(counter.getTag().toString());
 
-        // check if the gameState element in the array is already occupied by 0 or 1
-        if(gameState[tappedCounterTag] == 2){
+        // check if the gameState element in the array is already occupied by 0 or 1 and if the gameActive is true
+        if(gameState[tappedCounterTag] == 2 && gameActive){
             // game state tracker - change the gameState array every tapped using the imageview tag
             gameState[tappedCounterTag] = activePlayer;
 
@@ -55,11 +57,12 @@ public class MainActivity extends AppCompatActivity {
 
             /* CHECK AGAINST THE WINNING POSITION */
             for(int[] winningPosition: winningPositions){
-
-
                 if((gameState[winningPosition[0]]) == gameState[winningPosition[1]] &&
                         gameState[winningPosition[1]] == gameState[winningPosition[2]] &&
                         gameState[winningPosition[0]] != 2) {
+
+                    // if all conditions are met, gameActive will be false
+                    gameActive = false;
 
                     // decide which color has won
                     String winner;
