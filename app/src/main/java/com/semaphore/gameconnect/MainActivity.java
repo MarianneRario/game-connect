@@ -49,6 +49,21 @@ public class MainActivity extends AppCompatActivity {
             // game state tracker - change the gameState array every tapped using the imageview tag
             gameState[tappedCounterTag] = activePlayer;
 
+            // if gameState array doesn't contain any 2, no one won
+            Log.i("Array", "Array " + Arrays.toString(gameState));
+            if(gameState[0]!= 2 && gameState[1]!= 2 && gameState[2]!= 2
+                    && gameState[3]!= 2 && gameState[4]!= 2 && gameState[5]!= 2
+                    && gameState[6]!= 2 && gameState[7]!= 2 && gameState[8]!= 2){
+
+                // reference for the winner textview and retry button
+                TextView winnerTV = (TextView) findViewById(R.id.winnerTextViewId);
+                Button retryBtn = (Button) findViewById(R.id.retryBtnId );
+
+                winnerTV.setText("No one won :( ");
+                winnerTV.setVisibility(View.VISIBLE);
+                retryBtn.setVisibility(View.VISIBLE);
+            }
+
             // animate the counter
             counter.setTranslationY(-1000); // take it off at the top of the screen; san manggagaling
             // change the image per click
@@ -60,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 counter.setImageResource(R.drawable.red); // set an image on the imageview
             }
             counter.animate().translationYBy(1000).rotation(500).setDuration(500); // paano bababa
+
 
             /* CHECK AGAINST THE WINNING POSITION */
             for(int[] winningPosition: winningPositions){
@@ -89,8 +105,6 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             }
-
-
 
         }
     }
