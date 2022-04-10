@@ -32,41 +32,50 @@ public class MainActivity extends AppCompatActivity {
         ImageView counter = (ImageView) view; // actual imageview that was tapped on
 
         // check the tag
-        Log.i("Tag", "Tag: " + counter.getTag());
         int tappedCounterTag = Integer.parseInt(counter.getTag().toString());
 
-        // game state tracker - change the gameState array every tapped using the imageview tag
-        gameState[tappedCounterTag] = activePlayer;
+        // check if the gameState element in the array is already occupied by 0 or 1
+        if(gameState[tappedCounterTag] == 2){
+            // game state tracker - change the gameState array every tapped using the imageview tag
+            gameState[tappedCounterTag] = activePlayer;
 
-        // animate the counter
-        counter.setTranslationY(-1000); // take it off at the top of the screen; san manggagaling
-        // change the image per click
-        if(activePlayer == 0){
-            activePlayer = 1;
-            counter.setImageResource(R.drawable.yellow); // set an image on the imageview
-        } else {
-            activePlayer = 0;
-            counter.setImageResource(R.drawable.red); // set an image on the imageview
-        }
-        counter.animate().translationYBy(1000).rotation(500).setDuration(500); // paano bababa
+            Log.i("Info", "Value " + gameState[tappedCounterTag]);
 
-        Log.i("Arr", "Array: " + Integer.toString(winningPositions[0][0]));
-
-        /* CHECK AGAINST THE WINNING POSITION */
-        for(int[] winningPosition: winningPositions){
-            Log.i("Info", "Arr0: "+Arrays.toString(winningPosition));
-            Log.i("Info", "Arr1: "+Arrays.toString(gameState));
-
-            if((gameState[winningPosition[0]]) == gameState[winningPosition[1]] &&
-                    gameState[winningPosition[1]] == gameState[winningPosition[2]] &&
-            gameState[winningPosition[0]] != 2) {
-
-                // if all the above condition is all met, then someone has won
-                Toast.makeText(this, "Someone has won", Toast.LENGTH_LONG).show();
-
+            // animate the counter
+            counter.setTranslationY(-1000); // take it off at the top of the screen; san manggagaling
+            // change the image per click
+            if(activePlayer == 0){
+                activePlayer = 1;
+                counter.setImageResource(R.drawable.yellow); // set an image on the imageview
+            } else {
+                activePlayer = 0;
+                counter.setImageResource(R.drawable.red); // set an image on the imageview
             }
-        }
+            counter.animate().translationYBy(1000).rotation(500).setDuration(500); // paano bababa
 
+            /* CHECK AGAINST THE WINNING POSITION */
+            for(int[] winningPosition: winningPositions){
+
+
+                if((gameState[winningPosition[0]]) == gameState[winningPosition[1]] &&
+                        gameState[winningPosition[1]] == gameState[winningPosition[2]] &&
+                        gameState[winningPosition[0]] != 2) {
+
+                    // decide which color has won
+                    String winner;
+                    if(activePlayer == 1){
+                        winner = "Yellow";
+                    } else {
+                        winner = "Red";
+                    }
+
+                    // if all the above condition is all met, then someone has won
+                    Toast.makeText(this, winner + " has won", Toast.LENGTH_LONG).show();
+
+                }
+            }
+
+        }
     }
 
     @Override
