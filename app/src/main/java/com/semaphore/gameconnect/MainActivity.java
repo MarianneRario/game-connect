@@ -5,12 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.GridLayout;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.IntStream;
 
 public class MainActivity extends AppCompatActivity {
+
 
     int activePlayer = 0; // this integer will serve as a flag (boolean); 0 - Yellow, 1 - Red
 
@@ -28,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     // checks whether the game is still going or already done
     boolean gameActive = true;
 
-    /* onClick functions here */
+    /* onClick functions for ImageView */
     public void dropIn(View view){ // need a View parameter which is the ImageView that was tapped on
 
         ImageView counter = (ImageView) view; // actual imageview that was tapped on
@@ -40,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
         if(gameState[tappedCounterTag] == 2 && gameActive){
             // game state tracker - change the gameState array every tapped using the imageview tag
             gameState[tappedCounterTag] = activePlayer;
-
-            Log.i("Info", "Value " + gameState[tappedCounterTag]);
 
             // animate the counter
             counter.setTranslationY(-1000); // take it off at the top of the screen; san manggagaling
@@ -73,13 +79,47 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     // if all the above condition is all met, then someone has won
-                    Toast.makeText(this, winner + " has won", Toast.LENGTH_LONG).show();
+                    // reference for the winner textview and retry button
+                    TextView winnerTV = (TextView) findViewById(R.id.winnerTextViewId);
+                    Button retryBtn = (Button) findViewById(R.id.retryBtnId );
+
+                    winnerTV.setText("Congratulations! " + winner + " has won!");
+                    winnerTV.setVisibility(View.VISIBLE);
+                    retryBtn.setVisibility(View.VISIBLE);
 
                 }
             }
 
+
+
         }
     }
+
+    /* onClick function for Retry Button */
+    public void playAgain(View view){
+
+        // reference to the button and textview
+        TextView winnerTV = (TextView) findViewById(R.id.winnerTextViewId);
+        Button retryBtn = (Button) findViewById(R.id.retryBtnId );
+
+        // make textview and button invisible again
+        winnerTV.setVisibility(View.INVISIBLE);
+        retryBtn.setVisibility(View.INVISIBLE);
+
+        // remove all the imageview if retry button is clicked
+        GridLayout boardGridLayout = (GridLayout) findViewById(R.id.boardGridLayoutId);
+        for(int i = 0; i < boardGridLayout.getChildCount(); i++) {
+
+            ImageView counter = (ImageView) boardGridLayout.getChildAt(i); // child
+            counter.setImageDrawable(null); // remove the all the image that has been set before
+        }
+
+        // update the player variables
+        activePlayer = 0;
+        gameState = new int[]{2, 2, 2, 2, 2, 2, 2, 2, 2};
+        gameActive = true;
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
